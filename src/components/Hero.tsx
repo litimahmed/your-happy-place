@@ -1,4 +1,5 @@
 import { Play } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const Hero = () => {
@@ -11,9 +12,9 @@ export const Hero = () => {
         <img
           src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80"
           alt="Modern office workspace"
-          className="w-full h-full object-cover opacity-30 grayscale"
+          className="w-full h-full object-cover opacity-40 grayscale"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-dark/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-dark/40" />
       </div>
 
       {/* Content */}
@@ -23,48 +24,62 @@ export const Hero = () => {
           <div className="pt-20">
             <div className={`${isVisible ? "animate-fade-up" : "opacity-0"}`}>
               <p className="text-accent text-xs tracking-[0.3em] uppercase mb-8">
-                ● Welcome Agency
+                ● DISCOVER DAGENCY
               </p>
             </div>
             
             <h1 
-              className={`text-5xl md:text-6xl lg:text-7xl font-display text-light leading-[1.1] mb-8 ${
+              className={`text-5xl md:text-6xl lg:text-[80px] font-display text-light leading-[1.05] mb-10 ${
                 isVisible ? "animate-fade-up delay-100" : "opacity-0"
               }`}
             >
-              DIGITAL<br />
-              MEDIA<br />
+              DIGITAL MEDIA<br />
               AGENCY
             </h1>
             
-            <p 
-              className={`text-light/50 text-sm max-w-md mb-8 leading-relaxed ${
-                isVisible ? "animate-fade-up delay-200" : "opacity-0"
-              }`}
-            >
-              ● View Video
-            </p>
+            <div className={`${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`}>
+              <Button 
+                variant="outline" 
+                className="border-accent/50 text-light hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-full px-10 py-6 text-xs tracking-[0.15em] uppercase transition-all duration-300"
+              >
+                EXPLORE MORE
+              </Button>
+            </div>
           </div>
 
-          {/* Right Content - Play Button */}
+          {/* Right Content - Rotating Play Button */}
           <div 
             className={`flex justify-center lg:justify-end items-center ${
               isVisible ? "animate-fade-up delay-300" : "opacity-0"
             }`}
           >
-            <button className="group relative">
-              <div className="w-24 h-24 rounded-full border border-accent/50 flex items-center justify-center group-hover:border-accent transition-colors duration-300">
-                <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Play className="w-6 h-6 text-accent-foreground fill-current ml-1" />
+            <button className="group relative w-32 h-32">
+              {/* Rotating Text Circle */}
+              <div className="absolute inset-0 animate-spin-slow">
+                <svg viewBox="0 0 100 100" className="w-full h-full">
+                  <defs>
+                    <path
+                      id="circlePath"
+                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                    />
+                  </defs>
+                  <text className="text-[8px] fill-light/70 uppercase tracking-[0.3em]">
+                    <textPath href="#circlePath">
+                      DAGENCY • DIGITAL MEDIA AGENCY • 
+                    </textPath>
+                  </text>
+                </svg>
+              </div>
+              {/* Center Play Button */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-all duration-300">
+                  <Play className="w-6 h-6 text-accent group-hover:text-accent-foreground fill-current ml-1 transition-colors" />
                 </div>
               </div>
             </button>
           </div>
         </div>
       </div>
-
-      {/* Decorative Line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-border/20" />
     </section>
   );
 };

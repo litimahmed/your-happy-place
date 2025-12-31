@@ -1,21 +1,21 @@
-import { ArrowRight } from "lucide-react";
+import { Globe, ShoppingCart, Settings } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const services = [
   {
-    number: "01",
-    title: "Digital Strategy",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "DIGITAL MARKETING",
+    description: "Lorem ipsum dolor miss onso altin amen the in constran adipiscing entesue in the rana duru miss fermen.",
+    icon: Globe,
   },
   {
-    number: "02",
-    title: "Web Development",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "E-COMMERCE",
+    description: "Lorem ipsum dolor miss onso altin amen the in constran adipiscing entesue in the rana duru miss fermen.",
+    icon: ShoppingCart,
   },
   {
-    number: "03",
-    title: "Social Media",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "BRANDING",
+    description: "Lorem ipsum dolor miss onso altin amen the in constran adipiscing entesue in the rana duru miss fermen.",
+    icon: Settings,
   },
 ];
 
@@ -23,49 +23,58 @@ export const Services = () => {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="services" className="py-24 bg-background">
+    <section id="services" className="py-28 bg-background">
       <div ref={ref} className="container-custom">
+        {/* Decorative Line Top */}
+        <div className={`flex justify-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+          <div className="w-px h-16 bg-accent" />
+        </div>
+
         {/* Section Header */}
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
           <p className="text-accent text-xs tracking-[0.3em] uppercase mb-6">
-            ● What We Do
+            ● WHAT WE DO
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-foreground">
             OUR SERVICES
           </h2>
         </div>
 
-        {/* Decorative Line */}
-        <div className={`flex justify-center mb-16 ${isVisible ? "animate-fade-up delay-100" : "opacity-0"}`}>
-          <div className="w-px h-16 bg-border" />
-        </div>
-
         {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <div
               key={service.title}
-              className={`text-center px-6 ${
+              className={`relative bg-secondary/50 rounded-3xl p-8 pt-10 pb-20 ${
                 isVisible ? "animate-fade-up" : "opacity-0"
               }`}
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}
             >
-              <h3 className="text-lg font-display text-foreground mb-4 tracking-wide uppercase">
+              <h3 className="text-base font-display text-foreground mb-4 tracking-wide">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {service.description}
               </p>
-              <button className="w-10 h-10 rounded-full border border-accent bg-accent/10 flex items-center justify-center mx-auto hover:bg-accent group transition-colors">
-                <ArrowRight className="w-4 h-4 text-accent group-hover:text-accent-foreground transition-colors" />
-              </button>
+              {/* Icon at bottom right */}
+              <div className="absolute bottom-6 right-6">
+                <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center">
+                  <service.icon className="w-5 h-5 text-background" />
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Decorative Line */}
+        {/* Pagination Dots */}
+        <div className={`flex justify-center gap-2 mt-12 ${isVisible ? "animate-fade-up delay-400" : "opacity-0"}`}>
+          <span className="w-2 h-2 rounded-full bg-border" />
+          <span className="w-2 h-2 rounded-full bg-foreground" />
+        </div>
+
+        {/* Decorative Line Bottom */}
         <div className={`flex justify-center mt-16 ${isVisible ? "animate-fade-up delay-400" : "opacity-0"}`}>
-          <div className="w-px h-16 bg-border" />
+          <div className="w-px h-16 bg-accent" />
         </div>
       </div>
     </section>
