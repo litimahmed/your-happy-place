@@ -1,120 +1,124 @@
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useState } from "react";
 
 const portfolioItems = [
   {
     id: 1,
-    title: "Branding Design",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-    size: "large",
+    title: "BRANDING DESIGN",
+    category: "Design",
+    image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 2,
-    title: "Creative Design",
-    category: "Design",
+    title: "CREATIVE DESIGN",
+    category: "Creative",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    size: "small",
   },
   {
     id: 3,
-    title: "Web Development",
+    title: "WEB DEVELOPMENT",
     category: "Development",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
-    size: "small",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 4,
-    title: "Digital Marketing",
+    title: "DIGITAL MARKETING",
     category: "Marketing",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
-    size: "small",
   },
 ];
 
 export const Portfolio = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const [currentIndex, setCurrentIndex] = useState(1);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % portfolioItems.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length);
+  };
+
+  const getVisibleItems = () => {
+    const items = [];
+    for (let i = -1; i <= 1; i++) {
+      const index = (currentIndex + i + portfolioItems.length) % portfolioItems.length;
+      items.push({ ...portfolioItems[index], position: i });
+    }
+    return items;
+  };
 
   return (
-    <section id="portfolio" className="py-24 bg-background">
+    <section id="portfolio" className="py-28 bg-background overflow-hidden">
       <div ref={ref} className="container-custom">
         {/* Section Header */}
-        <div className={`text-center mb-12 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+        <div className={`text-center mb-16 ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
           <p className="text-accent text-xs tracking-[0.3em] uppercase mb-6">
-            ● Our Work
+            ● PROJECTS
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-foreground">
             OUR WORKS
           </h2>
         </div>
+      </div>
 
-        {/* Decorative Line */}
-        <div className={`flex justify-center mb-12 ${isVisible ? "animate-fade-up delay-100" : "opacity-0"}`}>
-          <div className="w-px h-12 bg-border" />
-        </div>
-
-        {/* Portfolio Grid - Matching template layout */}
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 ${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`}>
-          {/* Large item on left */}
-          <div className="relative group overflow-hidden cursor-pointer h-[500px]">
-            <img
-              src={portfolioItems[0].image}
-              alt={portfolioItems[0].title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale"
-            />
-            <div className="absolute inset-0 bg-dark/60" />
-            <div className="absolute bottom-8 left-8">
-              <p className="text-accent text-xs tracking-[0.2em] uppercase mb-2">
-                {portfolioItems[0].category}
-              </p>
-              <h3 className="text-light text-2xl font-display">
-                {portfolioItems[0].title}
-              </h3>
-            </div>
-          </div>
-
-          {/* Right column with 3 smaller items */}
-          <div className="grid grid-rows-2 gap-6">
-            <div className="grid grid-cols-2 gap-6">
-              {portfolioItems.slice(1, 3).map((item) => (
-                <div 
-                  key={item.id} 
-                  className="relative group overflow-hidden cursor-pointer h-[240px]"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-dark/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <p className="text-accent text-xs tracking-[0.2em] uppercase mb-1">
-                      {item.category}
-                    </p>
-                    <h3 className="text-light text-lg font-display">
-                      {item.title}
-                    </h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="relative group overflow-hidden cursor-pointer h-[240px]">
-              <img
-                src={portfolioItems[3].image}
-                alt={portfolioItems[3].title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-dark/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-accent text-xs tracking-[0.2em] uppercase mb-1">
-                  {portfolioItems[3].category}
-                </p>
-                <h3 className="text-light text-lg font-display">
-                  {portfolioItems[3].title}
-                </h3>
+      {/* Full-width Carousel */}
+      <div className={`relative ${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`}>
+        <div className="flex items-center justify-center gap-6 px-4">
+          {getVisibleItems().map((item) => (
+            <div
+              key={`${item.id}-${item.position}`}
+              className={`relative flex-shrink-0 transition-all duration-500 ${
+                item.position === 0 
+                  ? "w-[60%] max-w-[900px] z-10" 
+                  : "w-[25%] max-w-[350px] opacity-60"
+              }`}
+            >
+              <div className="relative overflow-hidden rounded-lg group cursor-pointer">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
+                    item.position === 0 ? "h-[500px]" : "h-[400px]"
+                  } ${item.position !== 0 ? "grayscale" : ""}`}
+                />
+                {item.position === 0 && (
+                  <>
+                    <div className="absolute bottom-6 left-6">
+                      <span className="inline-block bg-accent text-accent-foreground text-xs tracking-[0.15em] uppercase px-4 py-2 rounded-full mb-3">
+                        ● {item.category}
+                      </span>
+                      <h3 className="text-light text-2xl font-display tracking-wide">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <div className="absolute bottom-6 right-6">
+                      <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center">
+                        <ArrowRight className="w-5 h-5 text-background -rotate-45" />
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
-          </div>
+          ))}
         </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-[15%] top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-accent flex items-center justify-center hover:bg-accent/90 transition-colors z-20"
+        >
+          <ArrowLeft className="w-5 h-5 text-accent-foreground" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-[15%] top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-accent flex items-center justify-center hover:bg-accent/90 transition-colors z-20"
+        >
+          <ArrowRight className="w-5 h-5 text-accent-foreground" />
+        </button>
       </div>
     </section>
   );
