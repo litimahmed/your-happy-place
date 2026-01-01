@@ -1,16 +1,18 @@
 import { Instagram, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTranslation } from "react-i18next";
 
 export const CTA = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useTranslation();
 
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80"
-          alt="Team meeting"
+          src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=80"
+          alt="Team working together"
           className="w-full h-full object-cover grayscale"
         />
         <div className="absolute inset-0 bg-dark/70" />
@@ -19,10 +21,10 @@ export const CTA = () => {
       <div ref={ref} className="container-custom relative z-10">
         <div className={`text-center ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
           <p className="text-accent text-xs tracking-[0.3em] uppercase mb-6">
-            ● LET'S TALK
+            ● {t("cta.subtitle")}
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-light leading-tight mb-10">
-            HAVE A PROJECT IN MIND?
+            {t("cta.title")}
           </h2>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-light/80">
@@ -38,13 +40,13 @@ export const CTA = () => {
 
             <span className="hidden sm:block text-light/30">|</span>
 
-            <a href="mailto:info@dagency.com" className="hover:text-accent transition-colors">
-              info@dagency.com
+            <a href="mailto:hello@averix.agency" className="hover:text-accent transition-colors">
+              hello@averix.agency
             </a>
 
             <span className="hidden sm:block text-light/30">|</span>
 
-            <span>+(1) 123 456 7890</span>
+            <span>+1 (555) 123-4567</span>
 
             <span className="hidden sm:block text-light/30">|</span>
 
