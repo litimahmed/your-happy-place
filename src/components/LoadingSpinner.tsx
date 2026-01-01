@@ -19,7 +19,7 @@ export const LoadingSpinner = ({ onComplete, minDuration = 2000 }: LoadingSpinne
         clearInterval(interval);
         setTimeout(() => {
           onComplete?.();
-        }, 300);
+        }, 400);
       }
     }, 16);
 
@@ -28,55 +28,47 @@ export const LoadingSpinner = ({ onComplete, minDuration = 2000 }: LoadingSpinne
 
   return (
     <div className="fixed inset-0 z-[100] bg-dark flex flex-col items-center justify-center">
-      {/* Logo */}
-      <div className="mb-12">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-accent flex items-center justify-center rounded">
-            <span className="text-accent-foreground font-display text-2xl font-bold">A</span>
+      {/* Logo with fade-in animation */}
+      <div 
+        className="mb-16 transition-all duration-1000"
+        style={{ 
+          opacity: progress > 10 ? 1 : 0,
+          transform: `translateY(${progress > 10 ? 0 : 20}px)`
+        }}
+      >
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-accent flex items-center justify-center rounded-lg">
+            <span className="text-accent-foreground font-display text-3xl font-bold">A</span>
           </div>
-          <span className="text-2xl font-display text-light tracking-wider">AVERIX</span>
+          <span className="text-3xl font-display text-light tracking-[0.15em]">AVERIX</span>
         </div>
       </div>
 
-      {/* Spinning Circle */}
-      <div className="relative w-24 h-24 mb-8">
-        {/* Background circle */}
-        <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-          <circle
-            cx="50"
-            cy="50"
-            r="45"
-            fill="none"
-            stroke="rgba(255,255,255,0.1)"
-            strokeWidth="2"
+      {/* Minimal Progress Bar Container */}
+      <div className="w-48 md:w-64">
+        {/* Progress track */}
+        <div className="h-[2px] bg-light/10 rounded-full overflow-hidden">
+          {/* Progress fill */}
+          <div 
+            className="h-full bg-accent transition-all duration-100 ease-out rounded-full"
+            style={{ width: `${progress}%` }}
           />
-          {/* Progress circle */}
-          <circle
-            cx="50"
-            cy="50"
-            r="45"
-            fill="none"
-            stroke="hsl(var(--accent))"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeDasharray={`${progress * 2.83} 283`}
-            className="transition-all duration-100"
-          />
-        </svg>
-        {/* Center percentage */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-light font-display text-lg">{Math.round(progress)}%</span>
+        </div>
+        
+        {/* Percentage and loading text */}
+        <div className="flex items-center justify-between mt-4">
+          <span className="text-light/40 text-[10px] tracking-[0.3em] uppercase font-display">
+            Loading
+          </span>
+          <span className="text-accent text-sm font-display tabular-nums">
+            {Math.round(progress)}%
+          </span>
         </div>
       </div>
 
-      {/* Loading text with dots animation */}
-      <div className="flex items-center gap-1">
-        <span className="text-light/60 text-sm tracking-[0.3em] uppercase font-display">Loading</span>
-        <span className="flex gap-1">
-          <span className="w-1 h-1 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-          <span className="w-1 h-1 bg-accent rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-          <span className="w-1 h-1 bg-accent rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-        </span>
+      {/* Subtle decorative elements */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <div className="w-px h-10 bg-gradient-to-b from-accent/50 to-transparent" />
       </div>
     </div>
   );

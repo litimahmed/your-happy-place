@@ -12,7 +12,7 @@ export const en = {
     title1: "WE CREATE",
     title2: "DIGITAL EXCELLENCE",
     button: "START YOUR PROJECT",
-    circleText: "AVERIX • CREATIVE STUDIO •",
+    circleText: "SCROLL DOWN • EXPLORE MORE •",
   },
   about: {
     subtitle: "WHO WE ARE",
@@ -66,19 +66,35 @@ export const en = {
       digital: "METRO FASHION CAMPAIGN",
     },
   },
-  team: {
-    subtitle: "THE TEAM",
-    title: "MEET THE EXPERTS",
-    description: "Our diverse team of creative minds, strategists, and tech experts work together to deliver exceptional results. Each member brings unique skills and passion to every project.",
-    button: "VIEW ALL",
-    positions: {
-      socialMedia: "Creative Director",
-      supportEngineer: "Lead Developer",
-      developer: "Brand Strategist",
+  faq: {
+    subtitle: "FAQ",
+    title: "FREQUENTLY ASKED",
+    description: "Find answers to the most common questions about our services, process, and how we can help transform your brand.",
+    items: {
+      q1: {
+        question: "WHAT SERVICES DO YOU OFFER?",
+        answer: "We offer a comprehensive range of digital services including brand strategy, web design and development, digital marketing, e-commerce solutions, SEO optimization, and creative direction. Each service is tailored to meet your specific business goals."
+      },
+      q2: {
+        question: "HOW LONG DOES A TYPICAL PROJECT TAKE?",
+        answer: "Project timelines vary based on scope and complexity. A brand identity project typically takes 4-6 weeks, while a full website development can range from 8-12 weeks. We'll provide a detailed timeline during our initial consultation."
+      },
+      q3: {
+        question: "WHAT IS YOUR PRICING STRUCTURE?",
+        answer: "Our pricing is project-based and depends on your specific requirements. We offer transparent quotes after understanding your needs. Contact us for a free consultation and custom proposal tailored to your budget."
+      },
+      q4: {
+        question: "DO YOU WORK WITH INTERNATIONAL CLIENTS?",
+        answer: "Absolutely! We work with clients globally. Our team is experienced in remote collaboration, using modern tools to ensure seamless communication across different time zones and cultures."
+      },
+      q5: {
+        question: "WHAT MAKES AVERIX DIFFERENT?",
+        answer: "We combine strategic thinking with creative excellence. Our approach is data-driven yet design-focused, ensuring every solution not only looks stunning but also delivers measurable business results."
+      },
     },
   },
   videoBanner: {
-    circleText: "PLAY SHOWREEL • WATCH NOW •",
+    circleText: "EXPLORE MORE • INNOVATION •",
   },
   testimonials: {
     subtitle: "CLIENT FEEDBACK",
