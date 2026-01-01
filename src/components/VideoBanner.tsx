@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "react-i18next";
 
@@ -26,11 +26,11 @@ export const VideoBanner = () => {
       {/* Background Watermark */}
       <div className="absolute bottom-20 left-0 pointer-events-none">
         <span className="text-[15vw] font-display text-light/10 whitespace-nowrap tracking-wider">
-          SHOWREEL
+          EXPERTISE
         </span>
       </div>
 
-      {/* Play Button - Center */}
+      {/* CTA Button - Center */}
       <div ref={ref} className="relative z-10 flex items-center justify-center min-h-[500px]">
         <div className={`${isVisible ? "animate-fade-up" : "opacity-0"}`}>
           <button className="group relative w-36 h-36">
@@ -50,10 +50,10 @@ export const VideoBanner = () => {
                 </text>
               </svg>
             </div>
-            {/* Center Play Button */}
+            {/* Center CTA Button */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-all duration-300">
-                <Play className="w-6 h-6 text-accent group-hover:text-accent-foreground fill-current ml-1 transition-colors" />
+                <ArrowRight className="w-6 h-6 text-accent group-hover:text-accent-foreground transition-colors" />
               </div>
             </div>
           </button>

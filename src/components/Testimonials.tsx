@@ -3,6 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { Quote } from "lucide-react";
 
 export const Testimonials = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -14,6 +15,7 @@ export const Testimonials = () => {
   }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const testimonials = [
     {
@@ -78,37 +80,86 @@ export const Testimonials = () => {
         {/* Testimonials Carousel */}
         <div className={`overflow-hidden ${isVisible ? "animate-fade-up delay-200" : "opacity-0"}`} ref={emblaRef}>
           <div className="flex gap-4 md:gap-6">
-            {testimonials.map((testimonial) => (
+            {testimonials.map((testimonial, index) => (
               <div 
                 key={testimonial.id} 
                 className="flex-shrink-0 w-[calc(100%-40px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)]"
+                onMouseEnter={() => setHoveredCard(index)}
+                onMouseLeave={() => setHoveredCard(null)}
               >
-                {/* Card */}
+                {/* Modern Glass Card */}
                 <div
-                  className="relative p-6 md:p-8 pt-6 md:pt-8 pb-24 md:pb-28 h-full rounded-2xl"
-                  style={{ backgroundColor: '#f0f0f3' }}
+                  className={`relative p-6 md:p-8 pt-6 md:pt-8 pb-24 md:pb-28 h-full rounded-2xl transition-all duration-500 border ${
+                    hoveredCard === index 
+                      ? 'bg-foreground border-accent/30 shadow-2xl shadow-foreground/20 -translate-y-2' 
+                      : 'bg-secondary/80 border-transparent hover:border-accent/10'
+                  }`}
                 >
                   {/* Quote Icon */}
-                  <div className="mb-4 md:mb-6">
-                    <span className="text-4xl md:text-6xl font-display text-accent leading-none">"</span>
+                  <div 
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 ${
+                      hoveredCard === index ? 'bg-accent' : 'bg-foreground'
+                    }`}
+                  >
+                    <Quote 
+                      className={`w-5 h-5 transition-colors duration-300 ${
+                        hoveredCard === index ? 'text-accent-foreground' : 'text-background'
+                      }`} 
+                    />
                   </div>
-                  <p className="section-paragraph text-sm md:text-[17px]">
-                    {t(testimonial.quoteKey)}
+
+                  <p 
+                    className={`text-sm md:text-[15px] leading-relaxed transition-colors duration-300 ${
+                      hoveredCard === index ? 'text-background/80' : 'text-muted-foreground'
+                    }`}
+                  >
+                    "{t(testimonial.quoteKey)}"
                   </p>
+
+                  {/* Star rating */}
+                  <div className="flex gap-1 mt-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span 
+                        key={i} 
+                        className={`text-sm transition-colors duration-300 ${
+                          hoveredCard === index ? 'text-accent' : 'text-accent/70'
+                        }`}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Bottom accent line */}
+                  <div 
+                    className={`absolute bottom-0 left-0 right-0 h-1 bg-accent rounded-b-2xl transition-all duration-500 ${
+                      hoveredCard === index ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
                 </div>
                 
-                {/* Client info */}
-                <div className="relative -mt-[60px] flex items-center gap-3 px-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover grayscale"
-                  />
+                {/* Client info with modern styling */}
+                <div className="relative -mt-[55px] flex items-center gap-3 px-4">
+                  <div className="relative">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className={`w-12 h-12 md:w-14 md:h-14 rounded-full object-cover transition-all duration-300 ${
+                        hoveredCard === index ? 'grayscale-0 ring-2 ring-accent ring-offset-2 ring-offset-background' : 'grayscale'
+                      }`}
+                    />
+                    {/* Online indicator */}
+                    <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-accent rounded-full border-2 border-background" />
+                  </div>
                   <div>
-                    <h4 className="font-display text-xs md:text-sm tracking-wide" style={{ color: '#101010' }}>
+                    <h4 
+                      className={`font-display text-xs md:text-sm tracking-wide transition-colors duration-300 ${
+                        hoveredCard === index ? 'text-foreground' : 'text-foreground'
+                      }`}
+                    >
                       {testimonial.name}
                     </h4>
-                    <p className="text-[10px] md:text-xs" style={{ color: '#727272' }}>
+                    <p className="text-[10px] md:text-xs text-muted-foreground">
                       {t("testimonials.position")}, {testimonial.company}
                     </p>
                   </div>
@@ -124,10 +175,10 @@ export const Testimonials = () => {
             <button
               key={index}
               onClick={() => scrollTo(index)}
-              className={`transition-all duration-300 ${
+              className={`transition-all duration-300 rounded-full ${
                 selectedIndex === index 
-                  ? 'w-8 h-2 bg-accent rounded-full' 
-                  : 'w-2 h-2 bg-border hover:bg-muted-foreground rounded-full'
+                  ? 'w-8 h-2 bg-accent' 
+                  : 'w-2 h-2 bg-border hover:bg-muted-foreground'
               }`}
             />
           ))}

@@ -1,10 +1,17 @@
-import { Play } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "react-i18next";
 
 export const Hero = () => {
   const { ref, isVisible } = useScrollAnimation();
   const { t } = useTranslation();
+
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="relative min-h-screen flex items-center bg-dark overflow-hidden">
@@ -47,13 +54,16 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Right Content - Rotating Play Button */}
+          {/* Right Content - Scroll Down Indicator */}
           <div 
             className={`flex justify-center lg:justify-end items-center min-h-[200px] md:min-h-[300px] ${
               isVisible ? "animate-fade-up delay-300" : "opacity-0"
             }`}
           >
-            <button className="group relative w-32 h-32 md:w-40 md:h-40">
+            <button 
+              onClick={scrollToAbout}
+              className="group relative w-32 h-32 md:w-40 md:h-40"
+            >
               {/* Rotating Text Circle */}
               <div className="absolute inset-0 animate-spin-slow">
                 <svg viewBox="0 0 100 100" className="w-full h-full">
@@ -70,10 +80,10 @@ export const Hero = () => {
                   </text>
                 </svg>
               </div>
-              {/* Center Play Button */}
+              {/* Center Scroll Down Button */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-all duration-300">
-                  <Play className="w-6 h-6 md:w-8 md:h-8 text-accent group-hover:text-accent-foreground fill-current ml-1 transition-colors" />
+                  <ChevronDown className="w-6 h-6 md:w-8 md:h-8 text-accent group-hover:text-accent-foreground transition-colors animate-bounce" />
                 </div>
               </div>
             </button>

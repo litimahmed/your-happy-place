@@ -1,4 +1,4 @@
-import { Play, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "react-i18next";
 
@@ -39,25 +39,18 @@ export const About = () => {
             </div>
           </div>
 
-          {/* Right Content - Image with WATCH VIDEO overlay */}
+          {/* Right Content - Image without video overlay */}
           <div className={`relative ${isVisible ? "animate-slide-left" : "opacity-0"}`}>
-            {/* Image */}
             <div className="relative overflow-hidden rounded-2xl">
               <img
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
                 alt="Creative team collaboration"
-                className="w-full h-[300px] md:h-[450px] object-cover grayscale"
+                className="w-full h-[300px] md:h-[450px] object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
-            </div>
-
-            {/* WATCH VIDEO positioned at the bottom */}
-            <div className="absolute bottom-4 left-4 flex items-center gap-3 md:gap-4">
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-foreground flex items-center justify-center cursor-pointer hover:bg-accent transition-colors">
-                <Play className="w-4 h-4 md:w-5 md:h-5 text-light fill-current ml-0.5" />
+              {/* Decorative accent corner */}
+              <div className="absolute bottom-0 right-0 w-20 h-20 md:w-28 md:h-28">
+                <div className="absolute bottom-4 right-4 w-full h-full border-b-2 border-r-2 border-accent rounded-br-2xl" />
               </div>
-              <span className="text-light text-[10px] md:text-xs tracking-[0.15em] md:tracking-[0.2em] uppercase font-display">
-                {t("about.watchVideo")}
-              </span>
             </div>
           </div>
         </div>

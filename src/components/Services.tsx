@@ -1,4 +1,4 @@
-import { Globe, ShoppingCart, Settings, ArrowUpRight } from "lucide-react";
+import { Globe, ShoppingCart, Settings, ArrowUpRight, Sparkles, TrendingUp } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -30,17 +30,17 @@ export const Services = () => {
     {
       titleKey: "services.items.branding.title",
       descKey: "services.items.branding.description",
-      icon: Settings,
+      icon: Sparkles,
     },
     {
       titleKey: "services.items.webDesign.title",
       descKey: "services.items.webDesign.description",
-      icon: Globe,
+      icon: Settings,
     },
     {
       titleKey: "services.items.seo.title",
       descKey: "services.items.seo.description",
-      icon: Settings,
+      icon: TrendingUp,
     },
   ];
 
@@ -88,31 +88,80 @@ export const Services = () => {
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                {/* Card */}
+                {/* Modern Glass Card */}
                 <div
-                  className="relative p-6 md:p-8 pt-8 md:pt-10 pb-20 md:pb-24 h-full rounded-2xl"
-                  style={{ backgroundColor: '#f0f0f3' }}
+                  className={`relative p-6 md:p-8 pt-8 md:pt-10 pb-20 md:pb-24 h-full rounded-2xl transition-all duration-500 border border-transparent ${
+                    hoveredCard === index 
+                      ? 'bg-foreground shadow-2xl shadow-foreground/20 -translate-y-2 border-accent/20' 
+                      : 'bg-secondary/80 hover:bg-secondary'
+                  }`}
                 >
-                  <h3 className="text-sm md:text-base font-display mb-3 md:mb-4 tracking-wide" style={{ color: '#101010' }}>
+                  {/* Number badge */}
+                  <div 
+                    className={`absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-display transition-colors duration-300 ${
+                      hoveredCard === index 
+                        ? 'bg-accent text-accent-foreground' 
+                        : 'bg-foreground/10 text-muted-foreground'
+                    }`}
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+
+                  {/* Icon */}
+                  <div 
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 ${
+                      hoveredCard === index 
+                        ? 'bg-accent' 
+                        : 'bg-foreground'
+                    }`}
+                  >
+                    <service.icon 
+                      className={`w-5 h-5 transition-colors duration-300 ${
+                        hoveredCard === index 
+                          ? 'text-accent-foreground' 
+                          : 'text-background'
+                      }`} 
+                    />
+                  </div>
+
+                  <h3 
+                    className={`text-sm md:text-base font-display mb-3 md:mb-4 tracking-wide transition-colors duration-300 ${
+                      hoveredCard === index ? 'text-background' : 'text-foreground'
+                    }`}
+                  >
                     {t(service.titleKey)}
                   </h3>
-                  <p className="section-paragraph text-sm md:text-[17px]">
+                  <p 
+                    className={`text-sm md:text-[15px] leading-relaxed transition-colors duration-300 ${
+                      hoveredCard === index ? 'text-background/70' : 'text-muted-foreground'
+                    }`}
+                  >
                     {t(service.descKey)}
                   </p>
+
+                  {/* Bottom accent line */}
+                  <div 
+                    className={`absolute bottom-0 left-0 right-0 h-1 bg-accent rounded-b-2xl transition-all duration-500 ${
+                      hoveredCard === index ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
                 </div>
 
-                {/* Icon positioned at the bottom right */}
+                {/* Floating Action Button */}
                 <div
-                  className="relative -mt-[50px] ml-auto mr-4 w-[50px] h-[50px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer"
-                  style={{
-                    backgroundColor: hoveredCard === index ? '#B6EF00' : '#101010',
-                  }}
+                  className={`relative -mt-[45px] ml-auto mr-4 w-[50px] h-[50px] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg ${
+                    hoveredCard === index 
+                      ? 'bg-accent scale-110 rotate-45' 
+                      : 'bg-foreground hover:bg-accent'
+                  }`}
                 >
-                  {hoveredCard === index ? (
-                    <ArrowUpRight className="w-5 h-5 text-foreground" />
-                  ) : (
-                    <service.icon className="w-5 h-5 text-background" />
-                  )}
+                  <ArrowUpRight 
+                    className={`w-5 h-5 transition-all duration-300 ${
+                      hoveredCard === index 
+                        ? 'text-accent-foreground -rotate-45' 
+                        : 'text-background'
+                    }`} 
+                  />
                 </div>
               </div>
             ))}
@@ -125,10 +174,10 @@ export const Services = () => {
             <button
               key={index}
               onClick={() => scrollTo(index * 3)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`transition-all duration-300 rounded-full ${
                 Math.floor(selectedIndex / 3) === index 
-                  ? 'bg-foreground scale-100' 
-                  : 'bg-border hover:bg-muted-foreground scale-75'
+                  ? 'w-8 h-2 bg-accent' 
+                  : 'w-2 h-2 bg-border hover:bg-muted-foreground'
               }`}
             />
           ))}

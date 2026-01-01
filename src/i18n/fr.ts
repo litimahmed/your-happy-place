@@ -12,7 +12,7 @@ export const fr = {
     title1: "NOUS CRÉONS",
     title2: "L'EXCELLENCE DIGITALE",
     button: "DÉMARRER VOTRE PROJET",
-    circleText: "AVERIX • STUDIO CRÉATIF •",
+    circleText: "DÉFILER • EXPLORER •",
   },
   about: {
     subtitle: "QUI SOMMES-NOUS",
@@ -66,19 +66,35 @@ export const fr = {
       digital: "CAMPAGNE METRO FASHION",
     },
   },
-  team: {
-    subtitle: "L'ÉQUIPE",
-    title: "RENCONTREZ LES EXPERTS",
-    description: "Notre équipe diversifiée d'esprits créatifs, de stratèges et d'experts tech travaille ensemble pour livrer des résultats exceptionnels. Chaque membre apporte des compétences uniques à chaque projet.",
-    button: "VOIR TOUT",
-    positions: {
-      socialMedia: "Directeur Créatif",
-      supportEngineer: "Développeur Principal",
-      developer: "Stratège de Marque",
+  faq: {
+    subtitle: "FAQ",
+    title: "QUESTIONS FRÉQUENTES",
+    description: "Trouvez les réponses aux questions les plus courantes sur nos services, notre processus et comment nous pouvons transformer votre marque.",
+    items: {
+      q1: {
+        question: "QUELS SERVICES PROPOSEZ-VOUS?",
+        answer: "Nous offrons une gamme complète de services digitaux incluant la stratégie de marque, le design et développement web, le marketing digital, les solutions e-commerce, l'optimisation SEO et la direction créative."
+      },
+      q2: {
+        question: "COMBIEN DE TEMPS DURE UN PROJET?",
+        answer: "Les délais varient selon la portée et la complexité. Un projet d'identité de marque prend généralement 4-6 semaines, tandis qu'un développement web complet peut prendre 8-12 semaines."
+      },
+      q3: {
+        question: "QUELLE EST VOTRE STRUCTURE TARIFAIRE?",
+        answer: "Nos tarifs sont basés sur le projet et dépendent de vos besoins spécifiques. Nous proposons des devis transparents après avoir compris vos besoins. Contactez-nous pour une consultation gratuite."
+      },
+      q4: {
+        question: "TRAVAILLEZ-VOUS AVEC DES CLIENTS INTERNATIONAUX?",
+        answer: "Absolument! Nous travaillons avec des clients du monde entier. Notre équipe est expérimentée dans la collaboration à distance, utilisant des outils modernes pour assurer une communication fluide."
+      },
+      q5: {
+        question: "QU'EST-CE QUI DIFFÉRENCIE AVERIX?",
+        answer: "Nous combinons la pensée stratégique avec l'excellence créative. Notre approche est axée sur les données tout en étant centrée sur le design, garantissant des solutions à la fois esthétiques et performantes."
+      },
     },
   },
   videoBanner: {
-    circleText: "VOIR LA VIDÉO • SHOWREEL •",
+    circleText: "EXPLORER • INNOVATION •",
   },
   testimonials: {
     subtitle: "TÉMOIGNAGES CLIENTS",
